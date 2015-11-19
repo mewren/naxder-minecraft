@@ -26,7 +26,13 @@ public final class ModCrafting {
 		
 		//metal recipe
 		//GameRegistry.addRecipe(new ItemStack(ModItems.tutorialPickaxe), new Object[] {" # ", " I ", " J ", '#', Items.gold_ingot, 'I',  Items.iron_ingot, 'J', Items.brick});
-				
+		  
+		//shaped recipe for Armor
+		GameRegistry.addRecipe(new ItemStack(ModItems.tutorialHelmet), new Object[] {"   ", "###", "# #",'#', ModBlocks.tutorialBlock});
+		GameRegistry.addRecipe(new ItemStack(ModItems.tutorialChestplate), new Object[] {"# #", "###", "###",'#', ModBlocks.tutorialBlock});
+		GameRegistry.addRecipe(new ItemStack(ModItems.tutorialLeggings), new Object[] {"###", "# #", "# #",'#', ModBlocks.tutorialBlock});
+		GameRegistry.addRecipe(new ItemStack(ModItems.tutorialBoots), new Object[] {"   ", "# #", "# #", '#',ModBlocks.tutorialBlock});
+		
 	}
 
 }
