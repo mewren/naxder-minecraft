@@ -2,8 +2,6 @@ package com.naxder.naxdermod.world;
 
 import java.util.Random;
 
-import com.naxder.naxdermod.blocks.ModBlocks;
-
 import net.minecraft.block.state.pattern.BlockHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
@@ -13,12 +11,17 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
+import com.naxder.naxdermod.blocks.ModBlocks;
+
 public class TutorialWorldGen implements IWorldGenerator {
 
 	private WorldGenerator gen_tutorial_ore; // Generates Tutorial Ore (used in
 												// Overworld)
 	private WorldGenerator gen_cobblestone; //Generates Cobblestone (used in End)
 	private WorldGenerator gen_stone; //Generates Cobblestone (used in End)
+	
+	private WorldGenerator gen_multi_ore; //Generates Multi Ore (used in Overworld)
+	
 
 	public TutorialWorldGen() {
 		this.gen_tutorial_ore = new WorldGenMinable(ModBlocks.tutorial_ore.getDefaultState(), 8);
@@ -26,6 +29,8 @@ public class TutorialWorldGen implements IWorldGenerator {
 				BlockHelper.forBlock(Blocks.end_stone));
 		this.gen_stone = new WorldGenMinable(Blocks.stone.getDefaultState(), 16,
 				BlockHelper.forBlock(Blocks.end_stone));
+	    this.gen_multi_ore = new WorldGenSingleMinable(ModBlocks.tutorial_ore.getDefaultState());
+	    
 	}
 
 	@Override
@@ -34,7 +39,11 @@ public class TutorialWorldGen implements IWorldGenerator {
 		switch (world.provider.getDimensionId()) {
 		case 0: // Overworld
 			// 20 veins per chunk in levels 0 to 64
-			this.runGenerator(this.gen_tutorial_ore, world, random, chunkX, chunkZ, 20, 0, 64);
+			//this.runGenerator(this.gen_tutorial_ore, world, random, chunkX, chunkZ, 20, 0, 64);
+			
+			this.runGenerator(this.gen_tutorial_ore, world, random, chunkX, chunkZ, 100, 0, 255);
+			
+	        this.runGenerator(this.gen_multi_ore, world, random, chunkX, chunkZ, 100, 0, 255);
 			break;
 		case -1: // Nether
 	        this.runGenerator(this.gen_cobblestone, world, random, chunkX, chunkZ, 10, 0, 80);
