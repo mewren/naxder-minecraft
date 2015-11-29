@@ -1,6 +1,6 @@
 {
     "parent":"builtin/generated",
     "textures": {
-        "layer0":"naxder_mod:items/tutorial_Chocolate"
+        "layer0":"naxder_mod:items/tutorial_chocolate"
     }
 }

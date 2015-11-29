@@ -22,16 +22,16 @@ public class ItemModArmor extends ItemArmor {
     	//if wear individual pieces
 
         if (itemStack.getItem() == ModItems.tutorialHelmet) {
-            effectPlayer(player, Potion.nightVision, 0);
+            effectPlayer(player, Potion.nightVision, 3);
         }
         if (itemStack.getItem() == ModItems.tutorialChestplate) {
-            effectPlayer(player, Potion.digSpeed, 0);
+            effectPlayer(player, Potion.digSpeed, 3);
         }
         if (itemStack.getItem() == ModItems.tutorialLeggings) {
-            effectPlayer(player, Potion.moveSpeed, 0);
+            effectPlayer(player, Potion.moveSpeed, 3);
         }
         if (itemStack.getItem() == ModItems.tutorialBoots) {
-            effectPlayer(player, Potion.jump, 1);
+            effectPlayer(player, Potion.jump, 3);
         }
         
         //if wear all armor
@@ -39,7 +39,7 @@ public class ItemModArmor extends ItemArmor {
                 && player.inventory.armorItemInSlot(2) != null && player.inventory.armorItemInSlot(2).getItem() == ModItems.tutorialChestplate
                 && player.inventory.armorItemInSlot(1) != null && player.inventory.armorItemInSlot(1).getItem() == ModItems.tutorialLeggings
                 && player.inventory.armorItemInSlot(0) != null && player.inventory.armorItemInSlot(0).getItem() == ModItems.tutorialBoots) {
-                this.effectPlayer(player, Potion.regeneration, 1);
+                this.effectPlayer(player, Potion.regeneration, 3);
         }
         
     } 

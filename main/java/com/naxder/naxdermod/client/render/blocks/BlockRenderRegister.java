@@ -19,5 +19,6 @@ public final class BlockRenderRegister {
 	
     public static void registerBlockRenderer() {
     	reg(ModBlocks.tutorialBlock);
+    	reg(ModBlocks.tutorial_ore);
     }
 }

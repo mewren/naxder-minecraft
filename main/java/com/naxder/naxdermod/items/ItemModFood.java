@@ -18,7 +18,7 @@ public class ItemModFood extends ItemFood {
 
 	@Override
 	protected void onFoodEaten(ItemStack stack, World world, EntityPlayer player) {
-		// TODO Auto-generated method stub
+
 		super.onFoodEaten(stack, world, player);
 
 		for (int i = 0; i < effects.length; i++) {
