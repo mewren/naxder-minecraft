@@ -13,6 +13,7 @@ public class ItemModFood extends ItemFood {
 		super(amount, saturation, isWolfFood);
 		this.setUnlocalizedName(unlocalizedName);
 		this.effects = effects;
+		this.setCreativeTab(ModItems.tabMyMod);
 
 	}
 

@@ -1,9 +1,9 @@
 package com.naxder.naxdermod.items;
 
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.item.ItemFood;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.common.util.EnumHelper;
@@ -11,8 +11,9 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import tutorial.generic.Main;
 
 public final class ModItems {
-
+	public static Item tutorialaxe;
 	public static Item tutorialItem;
+	public static Item crystal;
 	public static Item tutorialPickaxe;
 	public static Item tutorialHelmet;
 	public static Item tutorialChestplate;
@@ -24,11 +25,18 @@ public final class ModItems {
 	// EnumHelper.addToolMaterial("TUTORIAL", harvestLevel, durability,
 	// miningSpeed, damageVsEntities, enchantability);
 	public static ToolMaterial TOOL_MATERIAL = EnumHelper.addToolMaterial("TUTORIAL", 2, 2000, 10.0f, 25.0f, 10);
-
+	
 	// material for our armor
 	public static ArmorMaterial ARMOR_MATERIAL = EnumHelper.addArmorMaterial("ARMOR_MATERIAL", Main.MODID + ":tutorial",
 			40, new int[] { 4, 8, 6, 4 }, 20);
 
+	//our own creative tab
+	public static final CreativeTabs tabMyMod = new CreativeTabs("myMod") {
+	    @Override public Item getTabIconItem() {
+	        return tutorialPickaxe;
+	    }
+	};
+	
 	public static void createItems() {
 
 		// /give @p naxder_mod:tutorial_item
@@ -36,9 +44,15 @@ public final class ModItems {
 		// create tutorial item
 		GameRegistry.registerItem(tutorialItem = new BasicItem("tutorial_item"), "tutorial_item");
 
+		//another item
+		GameRegistry.registerItem(crystal = new BasicItem("crystal"), "crystal");
+		
 		// create tutorial pickaxe
 		GameRegistry.registerItem(tutorialPickaxe = new ItemModPickaxe("crystal_pickaxe", TOOL_MATERIAL),
 				"crystal_pickaxe");
+		// create tutorial axe
+				GameRegistry.registerItem(tutorialaxe = new ItemModaxe("crystal_axe", TOOL_MATERIAL),
+						"crystal_axe");
 
 		// GameRegistry.registerItem(tutorialPickaxe = new
 		// ItemModPickaxe("tutorial_pickaxe", TUTORIAL), "tutorial_pickaxe");

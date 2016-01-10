@@ -2,7 +2,8 @@ package com.naxder.naxdermod.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
+
+import com.naxder.naxdermod.items.ModItems;
 
 public class BasicBlock extends Block {
 	
@@ -10,7 +11,8 @@ public class BasicBlock extends Block {
 			float hardness, float resistance) {
 		super(material);
 		this.setUnlocalizedName(unlocalizedName);
-		this.setCreativeTab(CreativeTabs.tabBlock);
+		//this.setCreativeTab(CreativeTabs.tabBlock);
+		this.setCreativeTab(ModItems.tabMyMod);
 		this.setHardness(hardness);
 		this.setResistance(resistance);
 		

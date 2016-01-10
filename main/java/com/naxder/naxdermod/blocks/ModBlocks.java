@@ -19,7 +19,7 @@ public final class ModBlocks {
 	    GameRegistry.registerBlock(tutorialBlock = new BasicBlock("tutorial_block"), "tutorial_block").setLightLevel(1.0f);
 	    
 		//block with ore
-	    GameRegistry.registerBlock(tutorial_ore = new ModBlockOre("tutorial_ore", Material.rock, ModItems.tutorialItem, 2, 4), "tutorial_ore");
+	    GameRegistry.registerBlock(tutorial_ore = new ModBlockOre("tutorial_ore", Material.rock, ModItems.crystal, 2, 9), "tutorial_ore");
 
 	}
 

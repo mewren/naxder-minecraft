@@ -17,12 +17,14 @@ public final class ItemRenderRegister {
     public static void registerItemRenderer() {
     	reg(ModItems.tutorialItem);
     	reg(ModItems.tutorialPickaxe);
-    	
+    	reg(ModItems.tutorialaxe);
     	reg(ModItems.tutorialBoots);
     	reg(ModItems.tutorialChestplate);
     	reg(ModItems.tutorialHelmet);
     	reg(ModItems.tutorialLeggings);
     	reg(ModItems.tutorialChocolate);
+    	
+    	reg(ModItems.crystal);
     }
     
 }

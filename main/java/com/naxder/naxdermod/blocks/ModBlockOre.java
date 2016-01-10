@@ -2,6 +2,8 @@ package com.naxder.naxdermod.blocks;
 
 import java.util.Random;
 
+import com.naxder.naxdermod.items.ModItems;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -27,7 +29,8 @@ public class ModBlockOre extends Block {
         this.setHardness(10.0f);
         this.setResistance(15.0f);
         this.setUnlocalizedName(unlocalizedName);
-        this.setCreativeTab(CreativeTabs.tabBlock);
+        //this.setCreativeTab(CreativeTabs.tabBlock);
+        this.setCreativeTab(ModItems.tabMyMod);
     }
     
     protected ModBlockOre(String unlocalizedName, Material mat, Item drop, int least_quantity, int most_quantity) {
