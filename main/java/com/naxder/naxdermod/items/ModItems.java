@@ -24,6 +24,7 @@ public final class ModItems {
 	public static Item rangerChestplate;
 	public static Item rangerLeggings;
 	public static Item rangerBoots;
+	public static Item clearGlass;
 	
 	// public static ToolMaterial TUTORIAL =
 	// EnumHelper.addToolMaterial("TUTORIAL", harvestLevel, durability,
@@ -50,6 +51,9 @@ public final class ModItems {
 
 		//another item
 		GameRegistry.registerItem(crystal = new BasicItem("crystal"), "crystal");
+
+		//clear glass
+		GameRegistry.registerItem(clearGlass = new BasicItem("clear_glass"), "clear_glass");
 		
 		// create tutorial pickaxe
 		GameRegistry.registerItem(tutorialPickaxe = new ItemModPickaxe("crystal_pickaxe", TOOL_MATERIAL),

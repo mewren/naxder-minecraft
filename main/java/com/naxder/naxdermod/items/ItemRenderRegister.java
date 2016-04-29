@@ -31,6 +31,7 @@ public final class ItemRenderRegister {
 		reg(ModItems.rangerHelmet);
 		reg(ModItems.rangerLeggings);
 
-	}
-
+    	reg(ModItems.clearGlass);
+    }
+    
 }

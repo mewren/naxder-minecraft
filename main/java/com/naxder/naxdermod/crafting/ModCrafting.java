@@ -52,6 +52,10 @@ public final class ModCrafting {
 		GameRegistry.addRecipe(new ItemStack(ModItems.tutorialBoots),
 				new Object[] { "   ", "# #", "# #", '#', ModItems.crystal });
 
+		// shaped recipe for clear glass block
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.clearGlassBlock),
+				new Object[] { "###", "###", "###", '#', ModItems.clearGlass });
+		
 	}
 
 }

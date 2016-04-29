@@ -18,3 +18,6 @@ item.ranger_boots.name=ranger Boots
 item.ranger_chestplate.name=ranger chestplate
 item.ranger_leggings.name=ranger leggings
 item.ranger_helmet.name=ranger helmet
+entity.TutorialMob.name=Naxder Entity
+item.clear_glass.name=Clear Glass
+tile.clear_glass_block.name=Clear Glass Block
