@@ -1,15 +1,17 @@
 package com.naxder.naxdermod.blocks;
 
-import com.naxder.naxdermod.items.ModItems;
-
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockGlass;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import com.naxder.naxdermod.items.ModItems;
 
 public final class ModBlocks {
 
 	public static Block tutorialBlock;
 	public static ModBlockOre tutorial_ore;
+	public static Block clearGlassBlock;
 
 
 	
@@ -20,6 +22,13 @@ public final class ModBlocks {
 	    
 		//block with ore
 	    GameRegistry.registerBlock(tutorial_ore = new ModBlockOre("tutorial_ore", Material.rock, ModItems.crystal, 2, 9), "tutorial_ore");
+
+	    //clear glass block - shiny!
+	    GameRegistry.registerBlock(clearGlassBlock = new BlockGlass(Material.glass, false), "clear_glass_block");
+	    clearGlassBlock.setHardness(0.3f);
+	    clearGlassBlock.setStepSound(Block.soundTypeGlass);
+	    clearGlassBlock.setUnlocalizedName("clear_glass_block");
+//	    GameRegistry.registerBlock(clearGlassBlock = new BasicBlock("clear_glass_block"), "clear_glass_block").setLightLevel(0.0f);
 
 	}
 

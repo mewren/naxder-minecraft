@@ -25,6 +25,7 @@ public final class ItemRenderRegister {
     	reg(ModItems.tutorialChocolate);
     	
     	reg(ModItems.crystal);
+    	reg(ModItems.clearGlass);
     }
     
 }

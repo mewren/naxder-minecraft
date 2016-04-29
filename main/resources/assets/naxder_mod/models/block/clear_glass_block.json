@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "naxder_mod:blocks/clear_glass_block"
+    }
+}
