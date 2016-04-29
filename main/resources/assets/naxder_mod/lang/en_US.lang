@@ -12,3 +12,9 @@ item.tutorial_chocolate.name=Naxder Chocolate
 tile.tutorial_ore.name=Naxder Ore
 itemGroup.myMod=Naxder Tab!
 entity.TutorialMob.name=Naxder Entity
+
+
+item.ranger_boots.name=ranger Boots
+item.ranger_chestplate.name=ranger chestplate
+item.ranger_leggings.name=ranger leggings
+item.ranger_helmet.name=ranger helmet

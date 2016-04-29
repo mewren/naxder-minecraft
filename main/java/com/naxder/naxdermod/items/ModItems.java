@@ -20,6 +20,10 @@ public final class ModItems {
 	public static Item tutorialLeggings;
 	public static Item tutorialBoots;
 	public static Item tutorialChocolate;
+	public static Item rangerHelmet;
+	public static Item rangerChestplate;
+	public static Item rangerLeggings;
+	public static Item rangerBoots;
 	
 	// public static ToolMaterial TUTORIAL =
 	// EnumHelper.addToolMaterial("TUTORIAL", harvestLevel, durability,
@@ -72,6 +76,28 @@ public final class ModItems {
 		// this is the boots
 		GameRegistry.registerItem(tutorialBoots = new ItemModArmor("tutorial_boots", ARMOR_MATERIAL, 1, 3),
 				"tutorial_boots");
+		
+		
+		
+		// this is the ranger's helmet
+				GameRegistry.registerItem(rangerHelmet = new ItemModArmor("ranger_helmet", ARMOR_MATERIAL, 1, 0),
+						"ranger_helmet");
+
+				// this is the ranger's chestplate
+				GameRegistry.registerItem(rangerChestplate = new ItemModArmor("ranger_chestplate", ARMOR_MATERIAL, 1, 1),
+						"ranger_chestplate");
+
+				// this is the ranger's leggings
+				GameRegistry.registerItem(rangerLeggings = new ItemModArmor("ranger_leggings", ARMOR_MATERIAL, 2, 2),
+						"ranger_leggings");
+
+				// this is the ranger's boots
+				GameRegistry.registerItem(rangerBoots = new ItemModArmor("ranger_boots", ARMOR_MATERIAL, 1, 3),
+						"ranger_boots");
+		
+		
+		//ranger's
+		
 
 		// this is the food
 
