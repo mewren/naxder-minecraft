@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import com.naxder.naxdermod.blocks.ModBlocks;
 import com.naxder.naxdermod.crafting.ModCrafting;
+import com.naxder.naxdermod.entity.ModEntities;
 import com.naxder.naxdermod.items.ModItems;
 import com.naxder.naxdermod.world.TutorialWorldGen;
 
@@ -14,7 +15,9 @@ public class CommonProxy {
 
 	public void preInit(FMLPreInitializationEvent e) {
 		ModItems.createItems();
-		ModBlocks.createBlocks();		
+		ModBlocks.createBlocks();	
+		
+		ModEntities.createEntities();
 
 		//ModBlocks.placeHelloWorld();
 	}

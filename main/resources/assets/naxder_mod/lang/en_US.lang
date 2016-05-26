@@ -21,3 +21,5 @@ item.ranger_helmet.name=ranger helmet
 entity.TutorialMob.name=Naxder Entity
 item.clear_glass.name=Clear Glass
 tile.clear_glass_block.name=Clear Glass Block
+
+entity.broom.name=Broom
