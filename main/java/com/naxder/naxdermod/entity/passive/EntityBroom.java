@@ -64,13 +64,11 @@ public class EntityBroom extends EntityAnimal implements IInvBasic
         }
     };
     private static final IAttribute broomJumpStrength = (new RangedAttribute((IAttribute)null, "broom.jumpStrength", 0.7D, 0.0D, 2.0D)).setDescription("Jump Strength").setShouldWatch(true);
-    private static final String[] broomArmorTextures = new String[] {null, "textures/entity/broom/armor/broom_armor_iron.png", "textures/entity/broom/armor/broom_armor_gold.png", "textures/entity/broom/armor/broom_armor_diamond.png"};
     private static final String[] field_110273_bx = new String[] {"", "meo", "goo", "dio"};
-    private static final int[] armorValues = new int[] {0, 5, 7, 11};
     private static final String[] broomTextures = new String[] {"textures/entity/broom/broom_white.png", "textures/entity/broom/broom_creamy.png", "textures/entity/broom/broom_chestnut.png", "textures/entity/broom/broom_brown.png", "textures/entity/broom/broom_black.png", "textures/entity/broom/broom_gray.png", "textures/entity/broom/broom_darkbrown.png"};
-    private static final String[] field_110269_bA = new String[] {"hwh", "hcr", "hch", "hbr", "hbl", "hgr", "hdb"};
+    private static final String[] broomTextureString = new String[] {"hwh", "hcr", "hch", "hbr", "hbl", "hgr", "hdb"};
     private static final String[] broomMarkingTextures = new String[] {null, "textures/entity/broom/broom_markings_white.png", "textures/entity/broom/broom_markings_whitefield.png", "textures/entity/broom/broom_markings_whitedots.png", "textures/entity/broom/broom_markings_blackdots.png"};
-    private static final String[] field_110292_bC = new String[] {"", "wo_", "wmo", "wdo", "bdo"};
+    private static final String[] broomMarkingTextureSTring = new String[] {"", "wo_", "wmo", "wdo", "bdo"};
     private int eatingHaystackCounter;
     private int openMouthCounter;
     private int jumpRearingCounter;
@@ -78,17 +76,10 @@ public class EntityBroom extends EntityAnimal implements IInvBasic
     public int field_110279_bq;
     protected boolean broomJumping;
     private AnimalChest broomChest;
-    private boolean hasReproduced;
     /** "The higher this value, the more likely the broom is to be tamed next time a player rides it." */
     protected int temper;
     protected float jumpPower;
     private boolean field_110294_bI;
-    private float headLean;
-    private float prevHeadLean;
-    private float rearingAmount;
-    private float prevRearingAmount;
-    private float mouthOpenness;
-    private float prevMouthOpenness;
     /** Used to determine the sound that the broom should make when it steps */
     private int gallopTime;
     private String texturePrefix;
@@ -112,6 +103,8 @@ public class EntityBroom extends EntityAnimal implements IInvBasic
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
         this.func_110226_cD();
+        
+        this.setTemper(100);
     }
 
     protected void entityInit()
@@ -198,20 +191,13 @@ public class EntityBroom extends EntityAnimal implements IInvBasic
         }
     }
 
-    public boolean isAdultBroom()
-    {
-        return !this.isChild();
-    }
 
     public boolean isTame()
     {
-        return this.getBroomWatchableBoolean(2);
+    	return true;
+        //return this.getBroomWatchableBoolean(2);
     }
 
-    public boolean func_110253_bW()
-    {
-        return this.isAdultBroom();
-    }
 
     public String func_152119_ch()
     {
@@ -223,26 +209,6 @@ public class EntityBroom extends EntityAnimal implements IInvBasic
         this.dataWatcher.updateObject(21, p_152120_1_);
     }
 
-    public float getBroomSize()
-    {
-        int i = this.getGrowingAge();
-        return i >= 0 ? 1.0F : 0.5F + (float)(-24000 - i) / -24000.0F * 0.5F;
-    }
-
-    /**
-     * "Sets the scale for an ageable entity according to the boolean parameter, which says if it's a child."
-     */
-    public void setScaleForAge(boolean p_98054_1_)
-    {
-        if (p_98054_1_)
-        {
-            this.setScale(this.getBroomSize());
-        }
-        else
-        {
-            this.setScale(1.0F);
-        }
-    }
 
     public boolean isBroomJumping()
     {
@@ -282,22 +248,6 @@ public class EntityBroom extends EntityAnimal implements IInvBasic
         return this.dataWatcher.getWatchableObjectInt(22);
     }
 
-//    /**
-//     * 0 = iron, 1 = gold, 2 = diamond
-//     */
-//    private int getBroomArmorIndex(ItemStack p_110260_1_)
-//    {
-//        if (p_110260_1_ == null)
-//        {
-//            return 0;
-//        }
-//        else
-//        {
-//            Item item = p_110260_1_.getItem();
-//            return item == Items.iron_broom_armor ? 1 : (item == Items.golden_broom_armor ? 2 : (item == Items.diamond_broom_armor ? 3 : 0));
-//        }
-//    }
-
     public boolean isEatingHaystack()
     {
         return this.getBroomWatchableBoolean(32);
@@ -313,19 +263,7 @@ public class EntityBroom extends EntityAnimal implements IInvBasic
         return this.getBroomWatchableBoolean(16);
     }
 
-    public boolean getHasReproduced()
-    {
-        return this.hasReproduced;
-    }
-
-    /**
-     * Set broom armor stack (for example: new ItemStack(Items.iron_broom_armor))
-     */
-    public void setBroomArmorStack(ItemStack p_146086_1_)
-    {
-        //this.dataWatcher.updateObject(22, Integer.valueOf(this.getBroomArmorIndex(p_146086_1_)));
-        this.resetTexturePrefix();
-    }
+  
 
     public void func_110242_l(boolean p_110242_1_)
     {
@@ -337,15 +275,7 @@ public class EntityBroom extends EntityAnimal implements IInvBasic
         this.setBroomWatchableBoolean(8, p_110207_1_);
     }
 
-    public void setHasReproduced(boolean p_110221_1_)
-    {
-        this.hasReproduced = p_110221_1_;
-    }
-
-    public void setBroomSaddled(boolean p_110251_1_)
-    {
-        this.setBroomWatchableBoolean(4, p_110251_1_);
-    }
+  
 
     public int getTemper()
     {
@@ -371,14 +301,6 @@ public class EntityBroom extends EntityAnimal implements IInvBasic
     {
         Entity entity = source.getEntity();
         return this.riddenByEntity != null && this.riddenByEntity.equals(entity) ? false : super.attackEntityFrom(source, amount);
-    }
-
-    /**
-     * Returns the current armor value as determined by a call to InventoryPlayer.getTotalArmorValue
-     */
-    public int getTotalArmorValue()
-    {
-        return armorValues[this.func_110241_cb()];
     }
 
     /**
@@ -473,20 +395,6 @@ public class EntityBroom extends EntityAnimal implements IInvBasic
         }
 
         this.broomChest.func_110134_a(this);
-        this.func_110232_cE();
-    }
-
-    private void func_110232_cE()
-    {
-        if (!this.worldObj.isRemote)
-        {
-            this.setBroomSaddled(this.broomChest.getStackInSlot(0) != null);
-
-            if (this.canWearArmor())
-            {
-                this.setBroomArmorStack(this.broomChest.getStackInSlot(1));
-            }
-        }
     }
 
     /**
@@ -496,24 +404,7 @@ public class EntityBroom extends EntityAnimal implements IInvBasic
     {
         int i = this.func_110241_cb();
         boolean flag = this.isBroomSaddled();
-        this.func_110232_cE();
-
-        if (this.ticksExisted > 20)
-        {
-            if (i == 0 && i != this.func_110241_cb())
-            {
-                this.playSound("mob.broom.armor", 0.5F, 1.0F);
-            }
-            else if (i != this.func_110241_cb())
-            {
-                this.playSound("mob.broom.armor", 0.5F, 1.0F);
-            }
-
-            if (!flag && this.isBroomSaddled())
-            {
-                this.playSound("mob.broom.leather", 0.5F, 1.0F);
-            }
-        }
+      
     }
 
     /**
@@ -733,7 +624,7 @@ public class EntityBroom extends EntityAnimal implements IInvBasic
             }
 
             this.field_110280_bR[0] = broomTextures[k];
-            this.texturePrefix = this.texturePrefix + field_110269_bA[k];
+            this.texturePrefix = this.texturePrefix + broomTextureString[k];
 
             if (l >= broomMarkingTextures.length)
             {
@@ -742,7 +633,7 @@ public class EntityBroom extends EntityAnimal implements IInvBasic
             }
 
             this.field_110280_bR[1] = broomMarkingTextures[l];
-            this.texturePrefix = this.texturePrefix + field_110292_bC[l];
+            this.texturePrefix = this.texturePrefix + broomMarkingTextureSTring[l];
         }
         else
         {
@@ -752,16 +643,8 @@ public class EntityBroom extends EntityAnimal implements IInvBasic
 
         k = this.func_110241_cb();
 
-        if (k >= broomArmorTextures.length)
-        {
-            this.field_175508_bO = false;
-        }
-        else
-        {
-            this.field_110280_bR[2] = broomArmorTextures[k];
             this.texturePrefix = this.texturePrefix + field_110273_bx[k];
             this.field_175508_bO = true;
-        }
     }
 
     @SideOnly(Side.CLIENT)
@@ -810,12 +693,12 @@ public class EntityBroom extends EntityAnimal implements IInvBasic
         {
             return false;
         }
-        else if (this.isTame() && this.isAdultBroom() && player.isSneaking())
+        else if (this.isTame()  && player.isSneaking())
         {
             this.openGUI(player);
             return true;
         }
-        else if (this.func_110253_bW() && this.riddenByEntity != null)
+        else if ( this.riddenByEntity != null)
         {
             return super.interact(player);
         }
@@ -915,7 +798,7 @@ public class EntityBroom extends EntityAnimal implements IInvBasic
                         flag = true;
                     }
 
-                    if (!this.isAdultBroom() && short1 > 0)
+                    if ( short1 > 0)
                     {
                         this.addGrowth(short1);
                         flag = true;
@@ -952,7 +835,7 @@ public class EntityBroom extends EntityAnimal implements IInvBasic
                     this.func_110226_cD();
                 }
 
-                if (!flag && this.func_110253_bW() && !this.isBroomSaddled() && itemstack.getItem() == Items.saddle)
+                if (!flag && !this.isBroomSaddled() && itemstack.getItem() == Items.saddle)
                 {
                     this.openGUI(player);
                     return true;
@@ -969,7 +852,7 @@ public class EntityBroom extends EntityAnimal implements IInvBasic
                 }
             }
 
-            if (this.func_110253_bW() && this.riddenByEntity == null)
+            if ( this.riddenByEntity == null)
             {
                 if (itemstack != null && itemstack.interactWithEntity(player, this))
                 {
@@ -1101,7 +984,7 @@ public class EntityBroom extends EntityAnimal implements IInvBasic
                 this.setEatingHaystack(false);
             }
 
-            if (this.func_110205_ce() && !this.isAdultBroom() && !this.isEatingHaystack())
+            if (this.func_110205_ce() && !this.isEatingHaystack())
             {
                 EntityBroom entitybroom = this.getClosestBroom(this, 16.0D);
 
@@ -1153,70 +1036,6 @@ public class EntityBroom extends EntityAnimal implements IInvBasic
             }
         }
 
-        this.prevHeadLean = this.headLean;
-
-        if (this.isEatingHaystack())
-        {
-            this.headLean += (1.0F - this.headLean) * 0.4F + 0.05F;
-
-            if (this.headLean > 1.0F)
-            {
-                this.headLean = 1.0F;
-            }
-        }
-        else
-        {
-            this.headLean += (0.0F - this.headLean) * 0.4F - 0.05F;
-
-            if (this.headLean < 0.0F)
-            {
-                this.headLean = 0.0F;
-            }
-        }
-
-        this.prevRearingAmount = this.rearingAmount;
-
-        if (this.isRearing())
-        {
-            this.prevHeadLean = this.headLean = 0.0F;
-            this.rearingAmount += (1.0F - this.rearingAmount) * 0.4F + 0.05F;
-
-            if (this.rearingAmount > 1.0F)
-            {
-                this.rearingAmount = 1.0F;
-            }
-        }
-        else
-        {
-            this.field_110294_bI = false;
-            this.rearingAmount += (0.8F * this.rearingAmount * this.rearingAmount * this.rearingAmount - this.rearingAmount) * 0.6F - 0.05F;
-
-            if (this.rearingAmount < 0.0F)
-            {
-                this.rearingAmount = 0.0F;
-            }
-        }
-
-        this.prevMouthOpenness = this.mouthOpenness;
-
-        if (this.getBroomWatchableBoolean(128))
-        {
-            this.mouthOpenness += (1.0F - this.mouthOpenness) * 0.7F + 0.05F;
-
-            if (this.mouthOpenness > 1.0F)
-            {
-                this.mouthOpenness = 1.0F;
-            }
-        }
-        else
-        {
-            this.mouthOpenness += (0.0F - this.mouthOpenness) * 0.7F - 0.05F;
-
-            if (this.mouthOpenness < 0.0F)
-            {
-                this.mouthOpenness = 0.0F;
-            }
-        }
     }
 
     private void openBroomMouth()
@@ -1233,7 +1052,7 @@ public class EntityBroom extends EntityAnimal implements IInvBasic
      */
     private boolean canMate()
     {
-        return this.riddenByEntity == null && this.ridingEntity == null && this.isTame() && this.isAdultBroom() && !this.isSterile() && this.getHealth() >= this.getMaxHealth() && this.isInLove();
+        return this.riddenByEntity == null && this.ridingEntity == null && this.isTame() && !this.isSterile() && this.getHealth() >= this.getMaxHealth() && this.isInLove();
     }
 
     public void setEating(boolean eating)
@@ -1400,7 +1219,6 @@ public class EntityBroom extends EntityAnimal implements IInvBasic
         super.writeEntityToNBT(tagCompound);
         tagCompound.setBoolean("EatingHaystack", this.isEatingHaystack());
         tagCompound.setBoolean("ChestedBroom", this.isChested());
-        tagCompound.setBoolean("HasReproduced", this.getHasReproduced());
         tagCompound.setBoolean("Bred", this.func_110205_ce());
         tagCompound.setInteger("Type", this.getBroomType());
         tagCompound.setInteger("Variant", this.getBroomVariant());
@@ -1448,7 +1266,6 @@ public class EntityBroom extends EntityAnimal implements IInvBasic
         this.setEatingHaystack(tagCompund.getBoolean("EatingHaystack"));
         this.func_110242_l(tagCompund.getBoolean("Bred"));
         this.setChested(tagCompund.getBoolean("ChestedBroom"));
-        this.setHasReproduced(tagCompund.getBoolean("HasReproduced"));
         this.setBroomType(tagCompund.getInteger("Type"));
         this.setBroomVariant(tagCompund.getInteger("Variant"));
         this.setTemper(tagCompund.getInteger("Temper"));
@@ -1519,8 +1336,6 @@ public class EntityBroom extends EntityAnimal implements IInvBasic
         {
             this.broomChest.setInventorySlotContents(0, new ItemStack(Items.saddle));
         }
-
-        this.func_110232_cE();
     }
 
     /**
@@ -1685,24 +1500,6 @@ public class EntityBroom extends EntityAnimal implements IInvBasic
         return (IEntityLivingData)p_180482_2_1;
     }
 
-    @SideOnly(Side.CLIENT)
-    public float getGrassEatingAmount(float p_110258_1_)
-    {
-        return this.prevHeadLean + (this.headLean - this.prevHeadLean) * p_110258_1_;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public float getRearingAmount(float p_110223_1_)
-    {
-        return this.prevRearingAmount + (this.rearingAmount - this.prevRearingAmount) * p_110223_1_;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public float func_110201_q(float p_110201_1_)
-    {
-        return this.prevMouthOpenness + (this.mouthOpenness - this.prevMouthOpenness) * p_110201_1_;
-    }
-
     public void setJumpPower(int p_110206_1_)
     {
         if (this.isBroomSaddled())
@@ -1765,20 +1562,6 @@ public class EntityBroom extends EntityAnimal implements IInvBasic
     public void updateRiderPosition()
     {
         super.updateRiderPosition();
-
-        if (this.prevRearingAmount > 0.0F)
-        {
-            float f = MathHelper.sin(this.renderYawOffset * (float)Math.PI / 180.0F);
-            float f1 = MathHelper.cos(this.renderYawOffset * (float)Math.PI / 180.0F);
-            float f2 = 0.7F * this.prevRearingAmount;
-            float f3 = 0.15F * this.prevRearingAmount;
-            this.riddenByEntity.setPosition(this.posX + (double)(f2 * f), this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset() + (double)f3, this.posZ - (double)(f2 * f1));
-
-            if (this.riddenByEntity instanceof EntityLivingBase)
-            {
-                ((EntityLivingBase)this.riddenByEntity).renderYawOffset = this.renderYawOffset;
-            }
-        }
     }
 
     private float func_110267_cL()
@@ -1848,7 +1631,6 @@ public class EntityBroom extends EntityAnimal implements IInvBasic
             else
             {
                 this.broomChest.setInventorySlotContents(j, p_174820_2_);
-                this.func_110232_cE();
                 return true;
             }
         }

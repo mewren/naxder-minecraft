@@ -211,12 +211,12 @@ public class ModelBroom extends ModelBase
     {
         EntityBroom entitybroom = (EntityBroom)p_78088_1_;
         int i = entitybroom.getBroomType();
-        float f6 = entitybroom.getGrassEatingAmount(0.0F);
-        boolean flag = entitybroom.isAdultBroom();
+        float grassEatingAmount = 0;
+        boolean flag = true;
         boolean flag1 = flag && entitybroom.isBroomSaddled();
         boolean flag2 = flag && entitybroom.isChested();
         boolean flag3 = i == 1 || i == 2;
-        float f7 = entitybroom.getBroomSize();
+        float broomSize = 1;
         boolean flag4 = entitybroom.riddenByEntity != null;
 
         if (flag1)
@@ -242,8 +242,8 @@ public class ModelBroom extends ModelBase
         if (!flag)
         {
             GlStateManager.pushMatrix();
-            GlStateManager.scale(f7, 0.5F + f7 * 0.5F, f7);
-            GlStateManager.translate(0.0F, 0.95F * (1.0F - f7), 0.0F);
+            GlStateManager.scale(broomSize, 0.5F + broomSize * 0.5F, broomSize);
+            GlStateManager.translate(0.0F, 0.95F * (1.0F - broomSize), 0.0F);
         }
 
         this.backLeftLeg.render(p_78088_7_);
@@ -263,8 +263,8 @@ public class ModelBroom extends ModelBase
         {
             GlStateManager.popMatrix();
             GlStateManager.pushMatrix();
-            GlStateManager.scale(f7, f7, f7);
-            GlStateManager.translate(0.0F, 1.35F * (1.0F - f7), 0.0F);
+            GlStateManager.scale(broomSize, broomSize, broomSize);
+            GlStateManager.translate(0.0F, 1.35F * (1.0F - broomSize), 0.0F);
         }
 
         this.body.render(p_78088_7_);
@@ -278,16 +278,16 @@ public class ModelBroom extends ModelBase
         {
             GlStateManager.popMatrix();
             GlStateManager.pushMatrix();
-            float f8 = 0.5F + f7 * f7 * 0.5F;
+            float f8 = 0.5F + broomSize * broomSize * 0.5F;
             GlStateManager.scale(f8, f8, f8);
 
-            if (f6 <= 0.0F)
+            if (grassEatingAmount <= 0.0F)
             {
-                GlStateManager.translate(0.0F, 1.35F * (1.0F - f7), 0.0F);
+                GlStateManager.translate(0.0F, 1.35F * (1.0F - broomSize), 0.0F);
             }
             else
             {
-                GlStateManager.translate(0.0F, 0.9F * (1.0F - f7) * f6 + 1.35F * (1.0F - f7) * (1.0F - f6), 0.15F * (1.0F - f7) * f6);
+                GlStateManager.translate(0.0F, 0.9F * (1.0F - broomSize) * grassEatingAmount + 1.35F * (1.0F - broomSize) * (1.0F - grassEatingAmount), 0.15F * (1.0F - broomSize) * grassEatingAmount);
             }
         }
 
@@ -375,10 +375,9 @@ public class ModelBroom extends ModelBase
         }
 
         EntityBroom entitybroom = (EntityBroom)p_78086_1_;
-        float f8 = entitybroom.getGrassEatingAmount(p_78086_4_);
-        float f9 = entitybroom.getRearingAmount(p_78086_4_);
-        float f10 = 1.0F - f9;
-        float f11 = entitybroom.func_110201_q(p_78086_4_);
+        float rearingAmount = 0;
+
+        float f10 = 1.0F - rearingAmount;
         boolean flag = entitybroom.field_110278_bp != 0;
         boolean flag1 = entitybroom.isBroomSaddled();
         boolean flag2 = entitybroom.riddenByEntity != null;
@@ -392,17 +391,7 @@ public class ModelBroom extends ModelBase
         this.muleRightChest.rotationPointY = 3.0F;
         this.muleRightChest.rotationPointZ = 10.0F;
         this.body.rotateAngleX = 0.0F;
-        this.head.rotateAngleX = 0.5235988F + f7;
-        this.head.rotateAngleY = f6 / (180F / (float)Math.PI);
-        this.head.rotateAngleX = f9 * (0.2617994F + f7) + f8 * 2.18166F + (1.0F - Math.max(f9, f8)) * this.head.rotateAngleX;
-        this.head.rotateAngleY = f9 * f6 / (180F / (float)Math.PI) + (1.0F - Math.max(f9, f8)) * this.head.rotateAngleY;
-        this.head.rotationPointY = f9 * -6.0F + f8 * 11.0F + (1.0F - Math.max(f9, f8)) * this.head.rotationPointY;
-        this.head.rotationPointZ = f9 * -1.0F + f8 * -10.0F + (1.0F - Math.max(f9, f8)) * this.head.rotationPointZ;
-        this.tailBase.rotationPointY = f9 * 9.0F + f10 * this.tailBase.rotationPointY;
-        this.tailMiddle.rotationPointZ = f9 * 18.0F + f10 * this.tailMiddle.rotationPointZ;
-        this.muleRightChest.rotationPointY = f9 * 5.5F + f10 * this.muleRightChest.rotationPointY;
-        this.muleRightChest.rotationPointZ = f9 * 15.0F + f10 * this.muleRightChest.rotationPointZ;
-        this.body.rotateAngleX = f9 * -45.0F / (180F / (float)Math.PI) + f10 * this.body.rotateAngleX;
+        this.body.rotateAngleX = rearingAmount * -45.0F / (180F / (float)Math.PI) + f10 * this.body.rotateAngleX;
         this.broomLeftEar.rotationPointY = this.head.rotationPointY;
         this.broomRightEar.rotationPointY = this.head.rotationPointY;
         this.muleLeftEar.rotationPointY = this.head.rotationPointY;
@@ -416,16 +405,12 @@ public class ModelBroom extends ModelBase
         this.muleLeftEar.rotationPointZ = this.head.rotationPointZ;
         this.muleRightEar.rotationPointZ = this.head.rotationPointZ;
         this.neck.rotationPointZ = this.head.rotationPointZ;
-        this.field_178711_b.rotationPointZ = 0.02F - f11 * 1.0F;
-        this.field_178712_c.rotationPointZ = 0.0F + f11 * 1.0F;
         this.mane.rotationPointZ = this.head.rotationPointZ;
         this.broomLeftEar.rotateAngleX = this.head.rotateAngleX;
         this.broomRightEar.rotateAngleX = this.head.rotateAngleX;
         this.muleLeftEar.rotateAngleX = this.head.rotateAngleX;
         this.muleRightEar.rotateAngleX = this.head.rotateAngleX;
         this.neck.rotateAngleX = this.head.rotateAngleX;
-        this.field_178711_b.rotateAngleX = 0.0F - 0.09424778F * f11;
-        this.field_178712_c.rotateAngleX = 0.0F + 0.15707964F * f11;
         this.mane.rotateAngleX = this.head.rotateAngleX;
         this.broomLeftEar.rotateAngleY = this.head.rotateAngleY;
         this.broomRightEar.rotateAngleY = this.head.rotateAngleY;
@@ -440,33 +425,33 @@ public class ModelBroom extends ModelBase
         float f15 = ((float)Math.PI / 2F);
         float f16 = ((float)Math.PI * 3F / 2F);
         float f17 = -1.0471976F;
-        float f18 = 0.2617994F * f9;
+        float f18 = 0.2617994F * rearingAmount;
         float f19 = MathHelper.cos(f12 * 0.6F + (float)Math.PI);
-        this.frontLeftLeg.rotationPointY = -2.0F * f9 + 9.0F * f10;
-        this.frontLeftLeg.rotationPointZ = -2.0F * f9 + -8.0F * f10;
+        this.frontLeftLeg.rotationPointY = -2.0F * rearingAmount + 9.0F * f10;
+        this.frontLeftLeg.rotationPointZ = -2.0F * rearingAmount + -8.0F * f10;
         this.frontRightLeg.rotationPointY = this.frontLeftLeg.rotationPointY;
         this.frontRightLeg.rotationPointZ = this.frontLeftLeg.rotationPointZ;
         this.backLeftShin.rotationPointY = this.backLeftLeg.rotationPointY + MathHelper.sin(((float)Math.PI / 2F) + f18 + f10 * -f13 * 0.5F * p_78086_3_) * 7.0F;
         this.backLeftShin.rotationPointZ = this.backLeftLeg.rotationPointZ + MathHelper.cos(((float)Math.PI * 3F / 2F) + f18 + f10 * -f13 * 0.5F * p_78086_3_) * 7.0F;
         this.backRightShin.rotationPointY = this.backRightLeg.rotationPointY + MathHelper.sin(((float)Math.PI / 2F) + f18 + f10 * f13 * 0.5F * p_78086_3_) * 7.0F;
         this.backRightShin.rotationPointZ = this.backRightLeg.rotationPointZ + MathHelper.cos(((float)Math.PI * 3F / 2F) + f18 + f10 * f13 * 0.5F * p_78086_3_) * 7.0F;
-        float f20 = (-1.0471976F + f19) * f9 + f14 * f10;
-        float f21 = (-1.0471976F + -f19) * f9 + -f14 * f10;
+        float f20 = (-1.0471976F + f19) * rearingAmount + f14 * f10;
+        float f21 = (-1.0471976F + -f19) * rearingAmount + -f14 * f10;
         this.frontLeftShin.rotationPointY = this.frontLeftLeg.rotationPointY + MathHelper.sin(((float)Math.PI / 2F) + f20) * 7.0F;
         this.frontLeftShin.rotationPointZ = this.frontLeftLeg.rotationPointZ + MathHelper.cos(((float)Math.PI * 3F / 2F) + f20) * 7.0F;
         this.frontRightShin.rotationPointY = this.frontRightLeg.rotationPointY + MathHelper.sin(((float)Math.PI / 2F) + f21) * 7.0F;
         this.frontRightShin.rotationPointZ = this.frontRightLeg.rotationPointZ + MathHelper.cos(((float)Math.PI * 3F / 2F) + f21) * 7.0F;
         this.backLeftLeg.rotateAngleX = f18 + -f13 * 0.5F * p_78086_3_ * f10;
-        this.backLeftShin.rotateAngleX = -0.08726646F * f9 + (-f13 * 0.5F * p_78086_3_ - Math.max(0.0F, f13 * 0.5F * p_78086_3_)) * f10;
+        this.backLeftShin.rotateAngleX = -0.08726646F * rearingAmount + (-f13 * 0.5F * p_78086_3_ - Math.max(0.0F, f13 * 0.5F * p_78086_3_)) * f10;
         this.backLeftHoof.rotateAngleX = this.backLeftShin.rotateAngleX;
         this.backRightLeg.rotateAngleX = f18 + f13 * 0.5F * p_78086_3_ * f10;
-        this.backRightShin.rotateAngleX = -0.08726646F * f9 + (f13 * 0.5F * p_78086_3_ - Math.max(0.0F, -f13 * 0.5F * p_78086_3_)) * f10;
+        this.backRightShin.rotateAngleX = -0.08726646F * rearingAmount + (f13 * 0.5F * p_78086_3_ - Math.max(0.0F, -f13 * 0.5F * p_78086_3_)) * f10;
         this.backRightHoof.rotateAngleX = this.backRightShin.rotateAngleX;
         this.frontLeftLeg.rotateAngleX = f20;
-        this.frontLeftShin.rotateAngleX = (this.frontLeftLeg.rotateAngleX + (float)Math.PI * Math.max(0.0F, 0.2F + f19 * 0.2F)) * f9 + (f14 + Math.max(0.0F, f13 * 0.5F * p_78086_3_)) * f10;
+        this.frontLeftShin.rotateAngleX = (this.frontLeftLeg.rotateAngleX + (float)Math.PI * Math.max(0.0F, 0.2F + f19 * 0.2F)) * rearingAmount + (f14 + Math.max(0.0F, f13 * 0.5F * p_78086_3_)) * f10;
         this.frontLeftHoof.rotateAngleX = this.frontLeftShin.rotateAngleX;
         this.frontRightLeg.rotateAngleX = f21;
-        this.frontRightShin.rotateAngleX = (this.frontRightLeg.rotateAngleX + (float)Math.PI * Math.max(0.0F, 0.2F - f19 * 0.2F)) * f9 + (-f14 + Math.max(0.0F, -f13 * 0.5F * p_78086_3_)) * f10;
+        this.frontRightShin.rotateAngleX = (this.frontRightLeg.rotateAngleX + (float)Math.PI * Math.max(0.0F, 0.2F - f19 * 0.2F)) * rearingAmount + (-f14 + Math.max(0.0F, -f13 * 0.5F * p_78086_3_)) * f10;
         this.frontRightHoof.rotateAngleX = this.frontRightShin.rotateAngleX;
         this.backLeftHoof.rotationPointY = this.backLeftShin.rotationPointY;
         this.backLeftHoof.rotationPointZ = this.backLeftShin.rotationPointZ;
@@ -479,8 +464,8 @@ public class ModelBroom extends ModelBase
 
         if (flag1)
         {
-            this.broomSaddleBottom.rotationPointY = f9 * 0.5F + f10 * 2.0F;
-            this.broomSaddleBottom.rotationPointZ = f9 * 11.0F + f10 * 2.0F;
+            this.broomSaddleBottom.rotationPointY = rearingAmount * 0.5F + f10 * 2.0F;
+            this.broomSaddleBottom.rotationPointZ = rearingAmount * 11.0F + f10 * 2.0F;
             this.broomSaddleFront.rotationPointY = this.broomSaddleBottom.rotationPointY;
             this.broomSaddleBack.rotationPointY = this.broomSaddleBottom.rotationPointY;
             this.broomLeftSaddleRope.rotationPointY = this.broomSaddleBottom.rotationPointY;
