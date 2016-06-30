@@ -32,6 +32,8 @@ public final class ItemRenderRegister {
 		reg(ModItems.rangerLeggings);
 
     	reg(ModItems.clearGlass);
+    	
+    	reg(ModItems.theUltimateSwordOfEpicness);
     }
     
 }
