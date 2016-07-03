@@ -1,0 +1,6 @@
+{
+    "parent":"naxder_mod:item/standard_item",
+    "textures": {
+        "layer0":"naxder_mod:items/wood_boots"    
+    }
+}
