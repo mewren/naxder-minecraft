@@ -2,14 +2,15 @@ package com.naxder.naxdermod.items;
 
 import java.util.Set;
 
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Sets;
+import com.naxder.naxdermod.blocks.ModBlocks;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
-
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Sets;
 
 public class TheUltimateSwordOfEpicness extends ItemSword {
 
@@ -28,7 +29,7 @@ public class TheUltimateSwordOfEpicness extends ItemSword {
 			Blocks.lit_redstone_ore, Blocks.mossy_cobblestone,
 			Blocks.netherrack, Blocks.packed_ice, Blocks.rail,
 			Blocks.redstone_ore, Blocks.sandstone, Blocks.red_sandstone,
-			Blocks.stone, Blocks.stone_slab, Blocks.bedrock });
+			Blocks.stone, Blocks.stone_slab, Blocks.bedrock ,ModBlocks.tutorial_ore});
 
 	protected TheUltimateSwordOfEpicness(String unlocalizedName,
 			ToolMaterial material) {
