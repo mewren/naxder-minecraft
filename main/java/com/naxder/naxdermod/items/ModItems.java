@@ -26,7 +26,11 @@ public final class ModItems {
 	public static Item rangerBoots;
 	public static Item clearGlass;
 	public static Item theUltimateSwordOfEpicness;
-
+	public static Item woodHelmet;
+	public static Item woodChestplate;
+	public static Item woodLeggings;
+	public static Item woodlBoots;
+	
 	// public static ToolMaterial TUTORIAL =
 	// EnumHelper.addToolMaterial("TUTORIAL", harvestLevel, durability,
 	// miningSpeed, damageVsEntities, enchantability);
@@ -41,7 +45,10 @@ public final class ModItems {
 	public static ArmorMaterial ARMOR_MATERIAL = EnumHelper.addArmorMaterial(
 			"ARMOR_MATERIAL", Main.MODID + ":tutorial", 40, new int[] { 4, 8,
 					6, 4 }, 20);
+	
+	public static ArmorMaterial WOOD_ARMOUR_MATERIAL = EnumHelper.addArmorMaterial("WOOD_ARMOUR_MATERIAL",  Main.MODID + ":wood", 7, new int[]{1, 3, 2, 1}, 10);
 
+	
 	// our own creative tab
 	public static final CreativeTabs tabMyMod = new CreativeTabs("myMod") {
 		@Override
@@ -128,6 +135,11 @@ public final class ModItems {
 				theUltimateSwordOfEpicness = new TheUltimateSwordOfEpicness(
 						"theUltimateSwordOfEpicness", EPIC_SWORD_MATERIAL),
 				"theUltimateSwordOfEpicness");
-
+		
+		
+		GameRegistry.registerItem(woodHelmet = new ItemModArmor("wood_helmet", WOOD_ARMOUR_MATERIAL, 1, 0), "wood_helmet");
+		GameRegistry.registerItem(woodChestplate = new ItemModArmor("wood_chestplate", WOOD_ARMOUR_MATERIAL, 1, 1), "wood_chestplate");
+		GameRegistry.registerItem(woodLeggings = new ItemModArmor("wood_leggings", WOOD_ARMOUR_MATERIAL, 2, 2), "wood_leggings");
+		GameRegistry.registerItem(woodlBoots = new ItemModArmor("wood_boots", WOOD_ARMOUR_MATERIAL, 1, 3), "wood_boots"); 
 	}
 }

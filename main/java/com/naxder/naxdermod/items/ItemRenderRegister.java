@@ -34,6 +34,12 @@ public final class ItemRenderRegister {
     	reg(ModItems.clearGlass);
     	
     	reg(ModItems.theUltimateSwordOfEpicness);
+    	
+    	reg(ModItems.woodChestplate);
+    	reg(ModItems.woodHelmet);
+    	reg(ModItems.woodlBoots);
+    	reg(ModItems.woodLeggings);
+    	
     }
     
 }
