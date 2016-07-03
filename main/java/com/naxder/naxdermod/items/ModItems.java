@@ -1,11 +1,14 @@
 package com.naxder.naxdermod.items;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import tutorial.generic.Main;
@@ -37,7 +40,7 @@ public final class ModItems {
 	public static ToolMaterial TOOL_MATERIAL = EnumHelper.addToolMaterial(
 			"TUTORIAL", 2, 2000, 10.0f, 25.0f, 10);
 
-	public static ToolMaterial EPIC_SWORD_MATERIAL = EnumHelper.addToolMaterial("EPIC_SWORD_MATERIAL", 3, 20000, 20.0f, 246.0f, 50);
+	public static ToolMaterial EPIC_SWORD_MATERIAL = EnumHelper.addToolMaterial("EPIC_SWORD_MATERIAL", 4, 20000, 20.0f, 246.0f, 50);
 
 //	public static ToolMaterial EPIC_SWORD_MATERIAL = EnumHelper.addToolMaterial("EPIC_SWORD_MATERIAL", 3, 1561, 12.0f, 4.0f, 22);
 			
@@ -141,5 +144,22 @@ public final class ModItems {
 		GameRegistry.registerItem(woodChestplate = new ItemModArmor("wood_chestplate", WOOD_ARMOUR_MATERIAL, 1, 1), "wood_chestplate");
 		GameRegistry.registerItem(woodLeggings = new ItemModArmor("wood_leggings", WOOD_ARMOUR_MATERIAL, 2, 2), "wood_leggings");
 		GameRegistry.registerItem(woodlBoots = new ItemModArmor("wood_boots", WOOD_ARMOUR_MATERIAL, 1, 3), "wood_boots"); 
+		
+		//change bedrock to not be unbreakable
+		
+		//Block obsidian = (Block)Block.blockRegistry.getObject(new ResourceLocation("obsidian"));
+		
+		Block bedrock = (Block)Block.blockRegistry.getObject(new ResourceLocation("bedrock"));
+		if(bedrock!=null) {
+			bedrock.setHardness(1);
+			IBlockState blockState = null;
+			bedrock.setHarvestLevel("sword", 4, blockState);
+			
+		}
+//		 Block bedrockBlock = GameRegistry.findBlock("minecraft", "bedrock");
+//		 if(bedrockBlock!=null) {
+//			 bedrockBlock.setHardness(123);
+//		 }
+		 
 	}
 }

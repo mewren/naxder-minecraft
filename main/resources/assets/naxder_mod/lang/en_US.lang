@@ -24,3 +24,9 @@ tile.clear_glass_block.name=Clear Glass Block
 
 entity.broom.name=Broom
 item.theUltimateSwordOfEpicness.name=The Ultimate Sword Of Epicness
+
+item.wood_boots.name=Wood Boots
+item.wood_leggings.name=Wood Leggings
+item.wood_helmet.name=Wood Helmet
+item.wood_chestplate.name=Wood Chestplate
+

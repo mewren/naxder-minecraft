@@ -65,6 +65,11 @@ public class TheUltimateSwordOfEpicness extends ItemSword {
 				|| block.getMaterial() == Material.vine
 				|| block.getMaterial() == Material.plants)
 			return this.efficiencyOnProperMaterial;
+		
+		if(block == ModBlocks.tutorial_ore || block == Blocks.bedrock) {
+			return (this.efficiencyOnProperMaterial * 8);
+		}
+		
 		return effectiveAgainst.contains(block) ? this.efficiencyOnProperMaterial
 				: super.getStrVsBlock(stack, block);
 	}
