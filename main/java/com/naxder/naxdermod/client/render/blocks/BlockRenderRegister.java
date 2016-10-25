@@ -21,5 +21,6 @@ public final class BlockRenderRegister {
     	reg(ModBlocks.tutorialBlock);
     	reg(ModBlocks.tutorial_ore);
     	reg(ModBlocks.clearGlassBlock);
+    	reg(ModBlocks.bedrockFurnace);
     }
 }

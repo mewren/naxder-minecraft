@@ -12,6 +12,7 @@ public final class ModBlocks {
 	public static Block tutorialBlock;
 	public static ModBlockOre tutorial_ore;
 	public static Block clearGlassBlock;
+	public static BedrockFurnace bedrockFurnace;
 
 
 	
@@ -30,6 +31,10 @@ public final class ModBlocks {
 	    clearGlassBlock.setUnlocalizedName("clear_glass_block");
 //	    GameRegistry.registerBlock(clearGlassBlock = new BasicBlock("clear_glass_block"), "clear_glass_block").setLightLevel(0.0f);
 
+	    
+	    //bedrock furnace
+	    GameRegistry.registerBlock(bedrockFurnace = new BedrockFurnace(false), "bedrock_furnace");
+	    
 	}
 
 

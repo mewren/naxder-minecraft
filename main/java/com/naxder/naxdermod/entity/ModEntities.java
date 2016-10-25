@@ -21,7 +21,7 @@ public final class ModEntities {
 	public static void createEntities() {
 		// TODO Auto-generated method stub
 
-		registerModEntityWithEgg(EntityBroom.class, "Broom", 0x3F5505, 0x4E6414);
+		//registerModEntityWithEgg(EntityBroom.class, "Broom", 0x3F5505, 0x4E6414);
 
 	}
 
